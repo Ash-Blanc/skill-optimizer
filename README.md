@@ -1,3 +1,5 @@
+
+
 # 🚀 Skill Optimizer
 
 A powerful framework for optimizing AI agent skills (prompts, tools, configurations) using **DSPy** optimization algorithms and **Agno** agents.
@@ -34,7 +36,7 @@ git clone https://github.com/Ash-Blanc/skill-optimizer.git
 cd skill-optimizer
 
 # Install as a CLI tool (recommended)
-uv tool install -e .
+uv tool install .
 
 # Set up environment variables
 cp .env.example .env
@@ -118,7 +120,6 @@ Now supports state-of-the-art DSPy strategies:
 - **BetterTogether**: Combines multiple strategies for best results.
 - **KNNFewShot**: Selects examples based on semantic similarity.
 - **COPRO**: Contrastive Prompt Optimization.
-
 
 
 
