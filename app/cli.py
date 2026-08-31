@@ -7,6 +7,8 @@ Usage:
     skill-optimizer compare <skill_a> <skill_b>
 """
 
+import utils.transport
+import utils.session
 import typer
 from pathlib import Path
 from rich.console import Console
