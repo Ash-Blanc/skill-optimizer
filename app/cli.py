@@ -23,7 +23,7 @@ from app.pipeline.optimizer import SkillOptimizer
 from app.pipeline.analyzer import OptimizationPotentialAnalyzer
 
 # Load environment variables
-load_dotenv()
+load_dotenv(os.path.join(os.getcwd(), ".env"))
 
 # Configure DSPy
 def configure_dspy():
@@ -33,12 +33,25 @@ def configure_dspy():
     gemini_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
     
     dspy_model = os.getenv("DSPY_MODEL")
+    ollama_model = os.getenv("OLLAMA_MODEL")
     
     if dspy_model:
         # User specified model
         lm = dspy.LM(dspy_model)
         dspy.configure(lm=lm)
         return
+
+    if ollama_model:
+        # User specified model
+        lm = dspy.LM(
+            model=ollama_model,
+            api_base=os.getenv("OLLAMA_API_BASE", "http://127.0.0.1:11434"),
+            temperature=float(os.getenv("OLLAMA_TEMPERATURE", 0.2)),
+            max_tokens=int(os.getenv("OLLAMA_MAX_TOKENS", 4096)),
+            timeout=int(os.getenv("OLLAMA_TIMEOUT", 1800)),
+        )
+        dspy.configure(lm=lm)
+        return 
 
     # Auto-detect
     if mistral_key:

@@ -69,11 +69,17 @@ class TrainingDataGenerator:
             if isinstance(raw_examples, str):
                 # valid json?
                 # remove markdown code blocks if present
-                clean_json = raw_examples.replace("```json", "").replace("```", "").strip()
+                clean_json = (
+                    raw_examples.replace("```json", "")
+                    .replace("```", "")
+                    .replace(r"\.", r"\\.")
+                    .strip()
+                )
                 try:
                     data = json.loads(clean_json)
-                except json.JSONDecodeError:
+                except json.JSONDecodeError as e:
                     print(f"Failed to decode JSON: {clean_json[:100]}...")
+                    print(f"Error: {e}")
                     return []
             else:
                 data = raw_examples

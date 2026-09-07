@@ -19,6 +19,9 @@ dependencies = [
     "fastapi>=0.128.0",
     "uvicorn>=0.40.0",
     "mistralai>=1.10.1",
+    "SQLAlchemy>=2.0.46",
+    "optuna>=4.7.0",
+    "langwatch-scenario>=0.7.26",
 ]
 
 [project.scripts]

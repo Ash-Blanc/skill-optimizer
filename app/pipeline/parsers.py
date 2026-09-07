@@ -71,6 +71,7 @@ class MarkdownSkillParser:
         post = frontmatter.Post(skill.instructions, **metadata)
         
         path.parent.mkdir(parents=True, exist_ok=True)
-        with open(path, "wb") as f:
+        # with open(path, "wb") as f:
+        with open(path, "w", encoding="utf-8") as f:
             frontmatter.dump(post, f)
 

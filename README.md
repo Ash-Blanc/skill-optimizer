@@ -328,15 +328,23 @@ GEMINI_API_KEY=...
 
 # Optional: Specify default model for DSPy
 DSPY_MODEL=openai/gpt-4o-mini
+
+# Optional: Specify local model with ollama for DSPy
+OLLAMA_MODEL=ollama_chat/qwen3:8b
+OLLAMA_API_BASE=http://127.0.0.1:11434 # set your ollama API base URL
+OLLAMA_TEMPERATURE=0.2 # optional
+OLLAMA_MAX_TOKENS=4096 # optional
+OLLAMA_TIMEOUT=1800 # optional
 ```
 
 ### Model Priority
 
 The optimizer automatically selects a model in this order:
 1. `DSPY_MODEL` environment variable (if set)
-2. Mistral (if `MISTRAL_API_KEY` present) ← **Primary**
-3. OpenAI (if `OPENAI_API_KEY` present)
-4. Gemini (if `GEMINI_API_KEY` present)
+2. `OLLAMA_MODEL` environment variable (if set)
+3. Mistral (if `MISTRAL_API_KEY` present) ← **Primary**
+4. OpenAI (if `OPENAI_API_KEY` present)
+5. Gemini (if `GEMINI_API_KEY` present)
 
 ---
 
